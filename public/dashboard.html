@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BookLoop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">BookLoop</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Browse</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger" href="login.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <h2 class="mb-4">User Dashboard</h2>
+
+        <div class="row">
+            <!-- Left Side Forms -->
+            <div class="col-md-5 mb-4">
+                
+                <!-- Form: Add Physical Book -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">List a Physical Book</h5>
+                        <form id="add-book-form">
+                            <div class="mb-2">
+                                <label class="form-label small">Book Title</label>
+                                <input type="text" id="book-title" class="form-control" required>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small">Author</label>
+                                <input type="text" id="book-author" class="form-control" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-2">
+                                    <label class="form-label small">Genre</label>
+                                    <select id="book-genre" class="form-select" required>
+                                        <option value="Fiction">Fiction</option>
+                                        <option value="Non-Fiction">Non-Fiction</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Technology">Technology</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <label class="form-label small">Condition</label>
+                                    <select id="book-condition" class="form-select" required>
+                                        <option value="New">New</option>
+                                        <option value="Good">Good</option>
+                                        <option value="Fair">Fair</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100 mt-2">List Book</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Form: Upload Digital Note -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Upload Digital Note (PDF/TXT)</h5>
+                        <form id="upload-note-form">
+                            <div class="mb-2">
+                                <label class="form-label small">Select Book</label>
+                                <select id="note-book-id" class="form-select" required>
+                                    <option value="1">Clean Code (ID: 1)</option>
+                                    <option value="2">Dune (ID: 2)</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small">Document File (.pdf, .txt)</label>
+                                <input type="file" id="note-file" class="form-control" accept=".pdf,.txt" required>
+                            </div>
+                            <button type="submit" class="btn btn-info text-white w-100 mt-2">Upload Note</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Side Exchange Requests & Listings -->
+            <div class="col-md-7">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Exchange Requests</h5>
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Book</th>
+                                    <th>Requester</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exchange-requests-table">
+                                <tr>
+                                    <td>Clean Code</td>
+                                    <td>Alex Smith</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success">Accept</button>
+                                        <button class="btn btn-sm btn-outline-danger">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
