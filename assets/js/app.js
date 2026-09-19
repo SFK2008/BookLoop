@@ -14,22 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("listings-container")) {
         initBrowsePage();
     }
-
     // 2. Dashboard Page (dashboard.html)
     if (document.getElementById("exchange-requests-table")) {
         initDashboardPage();
     }
-
     // 3. Login Page (login.html)
     if (document.getElementById("login-form")) {
         initLoginPage();
     }
-
     // 4. Register Page (register.html)
     if (document.getElementById("register-form")) {
         initRegisterPage();
     }
-
     // 5. Global Logout Listener (binds to any nav link leading to login.html or marked as logout)
     bindLogoutHandler();
 });
@@ -51,11 +47,12 @@ function initBrowsePage() {
     }
 
     async function loadBooks() {
-        const keyword = searchInput.value.trim();
-        const genre = genreSelect.value;
-        const condition = conditionSelect.value;
-
+        // Safely extract values if the elements exist
+        const keyword = searchInput ? searchInput.value.trim() : "";
+        const genre = genreSelect ? genreSelect.value : "all";
+        const condition = conditionSelect ? conditionSelect.value : "all";
         const params = new URLSearchParams();
+
         if (keyword) params.append("keyword", keyword);
         if (genre && genre !== "all") params.append("genre", genre);
         if (condition && condition !== "all") params.append("condition", condition);
@@ -70,7 +67,6 @@ function initBrowsePage() {
         try {
             const res = await fetch(`${API.BOOKS}?${params.toString()}`);
             const result = await res.json();
-
             if (result.status === "success") {
                 renderListings(result.data);
             } else {
@@ -85,10 +81,11 @@ function initBrowsePage() {
         }
     }
 
-    searchInput.addEventListener("input", () => debounce(loadBooks, 300));
-    genreSelect.addEventListener("change", loadBooks);
-    conditionSelect.addEventListener("change", loadBooks);
-    filterForm.addEventListener("reset", () => setTimeout(loadBooks, 50));
+    // Safety checks added here to prevent "Cannot read properties of null" errors
+    if (searchInput) searchInput.addEventListener("input", () => debounce(loadBooks, 300));
+    if (genreSelect) genreSelect.addEventListener("change", loadBooks);
+    if (conditionSelect) conditionSelect.addEventListener("change", loadBooks);
+    if (filterForm) filterForm.addEventListener("reset", () => setTimeout(loadBooks, 50));
 
     // Initial load
     loadBooks();
@@ -108,7 +105,6 @@ function renderListings(books) {
 
     books.forEach(book => {
         const hasNote = Boolean(book.file_name);
-
         const cardHTML = `
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm position-relative">
@@ -146,14 +142,14 @@ async function requestExchange(bookId) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ action: "create", book_id: bookId })
         });
-
         const data = await res.json();
+        
         if (res.status === 401) {
             alert("You must be logged in to request an exchange.");
             window.location.href = "login.html";
             return;
         }
-
+        
         if (data.status === "success") {
             alert(data.message);
         } else {
@@ -198,7 +194,7 @@ function initDashboardPage() {
                     window.location.href = "login.html";
                     return;
                 }
-
+                
                 if (data.status === "success") {
                     alert("Book listed successfully!");
                     addBookForm.reset();
@@ -239,7 +235,7 @@ function initDashboardPage() {
                     window.location.href = "login.html";
                     return;
                 }
-
+                
                 if (data.status === "success") {
                     alert(data.message);
                     uploadNoteForm.reset();
@@ -265,7 +261,7 @@ async function loadDashboardRequests() {
             window.location.href = "login.html";
             return;
         }
-
+        
         const result = await res.json();
         if (result.status !== "success") throw new Error(result.message);
 
@@ -280,7 +276,6 @@ async function loadDashboardRequests() {
         requests.forEach(req => {
             const badgeClass = req.status === "Approved" ? "bg-success" : (req.status === "Rejected" ? "bg-danger" : "bg-warning text-dark");
             const isPending = req.status === "Pending";
-
             const row = `
                 <tr>
                     <td>${escapeHtml(req.title)}</td>
@@ -296,6 +291,7 @@ async function loadDashboardRequests() {
             `;
             tableBody.insertAdjacentHTML("beforeend", row);
         });
+
     } catch (err) {
         console.error("Fetch Requests Error:", err);
         tableBody.innerHTML = `<tr><td colspan="4" class="text-center text-danger">Failed to load requests.</td></tr>`;
@@ -314,8 +310,8 @@ async function updateRequestStatus(exchangeId, newStatus) {
                 status: newStatus
             })
         });
-
         const data = await res.json();
+        
         if (data.status === "success") {
             alert(data.message);
             loadDashboardRequests(); // Reload table
@@ -333,6 +329,8 @@ async function updateRequestStatus(exchangeId, newStatus) {
    ========================================================================== */
 function initLoginPage() {
     const form = document.getElementById("login-form");
+    if (!form) return;
+    
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = document.getElementById("login-email").value.trim();
@@ -344,8 +342,8 @@ function initLoginPage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ action: "login", email, password })
             });
-
             const data = await res.json();
+
             if (data.status === "success") {
                 window.location.href = "dashboard.html";
             } else {
@@ -360,11 +358,13 @@ function initLoginPage() {
 
 function initRegisterPage() {
     const form = document.getElementById("register-form");
+    if (!form) return;
+    
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const name = document.getElementById("register-name").value.trim();
-        const email = document.getElementById("register-email").value.trim();
-        const password = document.getElementById("register-password").value;
+        const name = document.getElementById("reg-name").value.trim();
+        const email = document.getElementById("reg-email").value.trim();
+        const password = document.getElementById("reg-password").value;
 
         try {
             const res = await fetch(API.AUTH, {
@@ -372,8 +372,8 @@ function initRegisterPage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ action: "register", name, email, password })
             });
-
             const data = await res.json();
+
             if (data.status === "success") {
                 alert("Account created successfully! Please sign in.");
                 window.location.href = "login.html";
