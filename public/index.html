@@ -1,92 +1,293 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookLoop - Exchange Books & Share Digital Notes</title>
-    <!-- Bootstrap 5 CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#172923">
+
+    <title>BookLoop | Discover Your Next Read</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="bookloop-page">
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bookloop-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">BookLoop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-symbol">b.</span>
+                BookLoop
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Browse</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                    <li class="nav-item"><a class="btn btn-primary ms-2" href="register.html">Register</a></li>
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn nav-register" href="register.html">
+                            Join BookLoop <span aria-hidden="true">↗</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Header -->
-    <header class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-5 fw-bold">Exchange Books. Share Knowledge.</h1>
-            <p class="lead">Swap physical books locally and access free community-contributed digital study notes.</p>
+    <!-- Hero -->
+    <header class="bookloop-hero">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <span class="eyebrow hero-eyebrow">
+                    YOUR NEXT CHAPTER STARTS HERE
+                </span>
+
+                <h1>Good books.<br>
+                    <span>New beginnings.</span>
+                </h1>
+
+                <p>
+                    Discover pre-loved books, exchange stories with your
+                    community, and find notes that make learning easier.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#discover" class="btn hero-primary">
+                        Explore books <span aria-hidden="true">↓</span>
+                    </a>
+                    <span class="hero-caption">Read more. Waste less.</span>
+                </div>
+            </div>
+
+            <div class="hero-art" aria-label="Illustration of books">
+                <div class="art-circle"></div>
+                <div class="art-book art-book-back">
+                    <span>READ</span>
+                    <small>DISCOVER SOMETHING NEW</small>
+                </div>
+                <div class="art-book art-book-front">
+                    <span>THE<br>NEXT<br>CHAPTER</span>
+                    <small>BOOKLOOP EDITION</small>
+                </div>
+                <div class="art-sticker">PASS IT<br>FORWARD ✳</div>
+            </div>
+        </div>
+
+        <div class="hero-bottom-line">
+            <span>READ</span>
+            <span>EXCHANGE</span>
+            <span>REPEAT</span>
+            <span>✳</span>
         </div>
     </header>
 
-    <!-- Main Content: Advanced Search & Listings -->
-    <main class="container my-5">
-        
-        <!-- Advanced Search & Filter Bar (MVP Essential) -->
-        <div class="card p-4 mb-4 shadow-sm">
-            <h5 class="card-title mb-3">Advanced Search & Filters</h5>
-            <form id="search-filter-form" class="row g-3">
-                <div class="col-md-4">
-                    <label for="search-keyword" class="form-label">Title or Author</label>
-                    <input type="text" id="search-keyword" class="form-control" placeholder="Search by title or author...">
-                </div>
-                <div class="col-md-3">
-                    <label for="filter-genre" class="form-label">Genre</label>
-                    <select id="filter-genre" class="form-select">
-                        <option value="all">All Genres</option>
-                        <option value="Fiction">Fiction</option>
-                        <option value="Non-Fiction">Non-Fiction</option>
-                        <option value="Science">Science</option>
-                        <option value="Technology">Technology</option>
-                        <option value="History">History</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="filter-condition" class="form-label">Condition</label>
-                    <select id="filter-condition" class="form-select">
-                        <option value="all">Any Condition</option>
-                        <option value="New">New</option>
-                        <option value="Good">Good</option>
-                        <option value="Fair">Fair</option>
-                    </select>
-                </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="reset" id="reset-filter-btn" class="btn btn-outline-secondary w-100">Reset</button>
-                </div>
-            </form>
+    <main id="discover" class="container discover-section">
+
+        <!-- Search heading -->
+        <div class="discover-heading">
+            <div>
+                <span class="eyebrow">THE COMMUNITY BOOKSHELF</span>
+                <h2>Find your next favourite.</h2>
+                <p>One search away from a whole new world.</p>
+            </div>
+
+            <a href="dashboard.html" class="list-book-link">
+                Your bookshelf <span aria-hidden="true">↗</span>
+            </a>
         </div>
 
-        <!-- Dynamic Content Grid -->
-        <div id="listings-container" class="row g-4">
-            <!-- Rendered dynamically by app.js -->
-        </div>
+        <!-- Main search -->
+        <section class="search-shell" aria-label="Book search">
+            <form id="search-filter-form">
+
+                <label for="search-keyword" class="search-label">
+                    WHAT ARE YOU LOOKING FOR?
+                </label>
+
+                <div class="main-search-row">
+                    <div class="search-input-wrap">
+                        <span class="search-icon" aria-hidden="true">⌕</span>
+                        <input
+                            type="search"
+                            id="search-keyword"
+                            class="form-control"
+                            placeholder="Search books, authors, topics..."
+                            autocomplete="off"
+                        >
+                        <button type="button" id="clear-keyword"
+                                class="clear-keyword"
+                                aria-label="Clear search">
+                            ×
+                        </button>
+                    </div>
+
+                    <button type="submit" class="search-submit">
+                        Search <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+
+                <div class="popular-searches">
+                    <span>Try:</span>
+                    <button type="button" class="search-suggestion"
+                            data-query="fiction">Fiction</button>
+                    <button type="button" class="search-suggestion"
+                            data-query="programming">Programming</button>
+                    <button type="button" class="search-suggestion"
+                            data-query="science">Science</button>
+                    <button type="button" class="search-suggestion"
+                            data-query="self help">Self-help</button>
+                </div>
+
+                <!-- Advanced filters -->
+                <div class="filter-heading">
+                    <div>
+                        <span class="filter-heading-icon">☷</span>
+                        <strong>Refine your search</strong>
+                        <span class="filter-subtitle">
+                            Find a book that fits your needs
+                        </span>
+                    </div>
+
+                    <button type="button" id="toggle-advanced"
+                            class="toggle-filters"
+                            aria-expanded="true"
+                            aria-controls="advanced-filters">
+                        Hide filters <span aria-hidden="true">⌃</span>
+                    </button>
+                </div>
+
+                <div id="advanced-filters" class="advanced-filters">
+                    <div class="row g-3">
+
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <label for="filter-genre" class="form-label">
+                                Category / Genre
+                            </label>
+                            <select id="filter-genre" class="form-select">
+                                <option value="all">All categories</option>
+                                <option value="fiction">Fiction</option>
+                                <option value="non-fiction">Non-Fiction</option>
+                                <option value="science">Science</option>
+                                <option value="technology">Technology</option>
+                                <option value="programming">Programming</option>
+                                <option value="history">History</option>
+                                <option value="self help">Self Help</option>
+                                <option value="business">Business</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <label for="filter-condition" class="form-label">
+                                Book condition
+                            </label>
+                            <select id="filter-condition" class="form-select">
+                                <option value="all">Any condition</option>
+                                <option value="new">New</option>
+                                <option value="good">Good</option>
+                                <option value="fair">Fair</option>
+                                <option value="used">Used</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <label for="filter-availability" class="form-label">
+                                Exchange availability
+                            </label>
+                            <select id="filter-availability" class="form-select">
+                                <option value="all">All books</option>
+                                <option value="available">Available</option>
+                                <option value="requested">Requested</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <label for="sort-books" class="form-label">
+                                Sort results by
+                            </label>
+                            <select id="sort-books" class="form-select">
+                                <option value="newest">Newest first</option>
+                                <option value="title-asc">Title: A to Z</option>
+                                <option value="title-desc">Title: Z to A</option>
+                                <option value="author">Author: A to Z</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="filter-footer">
+                        <span id="active-filter-summary">
+                            Browse the complete community collection.
+                        </span>
+                        <button type="reset" id="reset-filter-btn"
+                                class="reset-filters">
+                            Clear all filters <span aria-hidden="true">↺</span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Results -->
+        <section class="results-section" aria-labelledby="results-title">
+            <div class="results-heading">
+                <div>
+                    <span class="eyebrow">CURATED BY THE COMMUNITY</span>
+                    <h3 id="results-title">Books worth sharing</h3>
+                </div>
+                <span id="results-count" class="results-count"
+                      aria-live="polite">Loading books...</span>
+            </div>
+
+            <div id="listings-container" class="row g-4">
+                <div class="col-12">
+                    <div class="loading-state">
+                        <span class="loading-spinner"></span>
+                        <p>Opening the community bookshelf...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community banner -->
+        <section class="community-banner">
+            <div>
+                <span class="eyebrow">A LITTLE BOOK CAN GO A LONG WAY</span>
+                <h3>Finished reading? Pass it on.</h3>
+                <p>Give your books another life and help someone discover
+                   their next favourite story.</p>
+            </div>
+            <a href="dashboard.html" class="community-button">
+                Join the loop <span aria-hidden="true">↗</span>
+            </a>
+        </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <p class="mb-0">&copy; 2026 BookLoop Platform. All rights reserved.</p>
+    <footer class="bookloop-footer">
+        <div class="container footer-inner">
+            <a class="footer-brand" href="index.html">b. BookLoop</a>
+            <p>Books travel. Ideas grow. Communities connect.</p>
+            <span>© 2026 BookLoop</span>
+        </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle & Custom Application Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
 </body>
 </html>

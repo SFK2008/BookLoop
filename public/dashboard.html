@@ -1,126 +1,317 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dashboard - BookLoop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">BookLoop</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Browse</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link text-danger" href="login.html">Logout</a></li>
-                </ul>
+<body class="bookloop-page">
+
+    <!-- Navigation -->
+    <nav class="bookloop-nav">
+        <div class="container d-flex align-items-center justify-content-between py-3">
+            <a href="index.html"
+               class="text-decoration-none d-flex align-items-center gap-2">
+                <span class="brand-symbol">B</span>
+                <span class="fw-bold fs-4 text-dark">BookLoop</span>
+            </a>
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html"
+                   class="text-decoration-none text-dark">
+                    Browse Books
+                </a>
+
+                <a href="dashboard.html"
+                   class="nav-register text-decoration-none">
+                    Dashboard
+                </a>
+
+                <a href="login.html"
+                   class="text-decoration-none text-dark">
+                    Logout
+                </a>
             </div>
         </div>
     </nav>
 
-    <main class="container my-5">
-        <h2 class="mb-4">User Dashboard</h2>
+    <!-- Dashboard Header -->
+    <main class="container py-5">
 
-        <div class="row">
-            <!-- Left Side Forms -->
-            <div class="col-md-5 mb-4">
-                
-                <!-- Form: Add Physical Book -->
-                <div class="card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">List a Physical Book</h5>
+        <section class="mb-5">
+            <p class="hero-eyebrow">YOUR BOOKLOOP SPACE</p>
+            <h1 class="display-5 fw-bold mb-3">Your Dashboard</h1>
+            <p class="text-secondary">
+                Share books, upload study notes, and manage your exchange requests.
+            </p>
+        </section>
+
+        <!-- Dashboard Content -->
+        <div class="row g-4">
+
+            <!-- Left Column: Forms -->
+            <div class="col-lg-5">
+
+                <!-- List a Book -->
+                <section class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-body p-4">
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="brand-symbol">+</div>
+                            <div>
+                                <h2 class="h5 fw-bold mb-1">List a Physical Book</h2>
+                                <p class="text-secondary small mb-0">
+                                    Give your books another chapter.
+                                </p>
+                            </div>
+                        </div>
+
                         <form id="add-book-form">
-                            <div class="mb-2">
-                                <label class="form-label small">Book Title</label>
-                                <input type="text" id="book-title" class="form-control" required>
+
+                            <div class="mb-3">
+                                <label for="book-title" class="form-label">
+                                    Book Title
+                                </label>
+                                <input
+                                    type="text"
+                                    id="book-title"
+                                    class="form-control"
+                                    placeholder="Enter the book title"
+                                    required
+                                >
                             </div>
-                            <div class="mb-2">
-                                <label class="form-label small">Author</label>
-                                <input type="text" id="book-author" class="form-control" required>
+
+                            <div class="mb-3">
+                                <label for="book-author" class="form-label">
+                                    Author
+                                </label>
+                                <input
+                                    type="text"
+                                    id="book-author"
+                                    class="form-control"
+                                    placeholder="Enter the author's name"
+                                    required
+                                >
                             </div>
+
                             <div class="row">
-                                <div class="col-6 mb-2">
-                                    <label class="form-label small">Genre</label>
-                                    <select id="book-genre" class="form-select" required>
+                                <div class="col-sm-6 mb-3">
+                                    <label for="book-genre" class="form-label">
+                                        Genre
+                                    </label>
+                                    <select
+                                        id="book-genre"
+                                        class="form-select"
+                                        required
+                                    >
                                         <option value="Fiction">Fiction</option>
                                         <option value="Non-Fiction">Non-Fiction</option>
                                         <option value="Science">Science</option>
                                         <option value="Technology">Technology</option>
                                     </select>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <label class="form-label small">Condition</label>
-                                    <select id="book-condition" class="form-select" required>
+
+                                <div class="col-sm-6 mb-3">
+                                    <label for="book-condition" class="form-label">
+                                        Condition
+                                    </label>
+                                    <select
+                                        id="book-condition"
+                                        class="form-select"
+                                        required
+                                    >
                                         <option value="New">New</option>
                                         <option value="Good">Good</option>
                                         <option value="Fair">Fair</option>
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success w-100 mt-2">List Book</button>
+
+                            <button
+                                type="submit"
+                                class="search-submit w-100 mt-2"
+                            >
+                                + List My Book
+                            </button>
                         </form>
                     </div>
-                </div>
+                </section>
 
-                <!-- Form: Upload Digital Note -->
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Upload Digital Note (PDF/TXT)</h5>
+                <!-- Upload Digital Notes -->
+                <section class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="brand-symbol">
+                                <span aria-hidden="true">&#8593;</span>
+                            </div>
+                            <div>
+                                <h2 class="h5 fw-bold mb-1">Upload Digital Notes</h2>
+                                <p class="text-secondary small mb-0">
+                                    Share useful study material with readers.
+                                </p>
+                            </div>
+                        </div>
+
                         <form id="upload-note-form">
-                            <div class="mb-2">
-                                <label class="form-label small">Select Book</label>
-                                <select id="note-book-id" class="form-select" required>
+
+                            <div class="mb-3">
+                                <label for="note-book-id" class="form-label">
+                                    Select Book
+                                </label>
+                                <select
+                                    id="note-book-id"
+                                    class="form-select"
+                                    required
+                                >
                                     <option value="1">Clean Code (ID: 1)</option>
                                     <option value="2">Dune (ID: 2)</option>
                                 </select>
                             </div>
-                            <div class="mb-2">
-                                <label class="form-label small">Document File (.pdf, .txt)</label>
-                                <input type="file" id="note-file" class="form-control" accept=".pdf,.txt" required>
+
+                            <div class="mb-3">
+                                <label for="note-file" class="form-label">
+                                    Document File
+                                </label>
+                                <input
+                                    type="file"
+                                    id="note-file"
+                                    class="form-control"
+                                    accept=".pdf,.txt"
+                                    required
+                                >
+                                <div class="form-text">
+                                    Accepted formats: PDF and TXT.
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-info text-white w-100 mt-2">Upload Note</button>
+
+                            <button
+                                type="submit"
+                                class="search-submit w-100 mt-2"
+                            >
+                                Upload Notes
+                            </button>
                         </form>
                     </div>
-                </div>
+                </section>
 
             </div>
 
-            <!-- Right Side Exchange Requests & Listings -->
-            <div class="col-md-7">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Exchange Requests</h5>
-                        <table class="table table-hover align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Book</th>
-                                    <th>Requester</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="exchange-requests-table">
-                                <tr>
-                                    <td>Clean Code</td>
-                                    <td>Alex Smith</td>
-                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-success">Accept</button>
-                                        <button class="btn btn-sm btn-outline-danger">Reject</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- Right Column: Exchange Requests -->
+            <div class="col-lg-7">
+
+                <section class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+
+                        <div class="d-flex flex-wrap justify-content-between
+                                    align-items-center gap-2 mb-4">
+                            <div>
+                                <p class="hero-eyebrow mb-2">STAY CONNECTED</p>
+                                <h2 class="h4 fw-bold mb-1">
+                                    Exchange Requests
+                                </h2>
+                                <p class="text-secondary small mb-0">
+                                    Keep track of readers interested in your books.
+                                </p>
+                            </div>
+                            <span class="book-tag">BookLoop Community</span>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="py-3">Book</th>
+                                        <th class="py-3">Requester</th>
+                                        <th class="py-3">Status</th>
+                                        <th class="py-3">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="exchange-requests-table">
+                                    <tr>
+                                        <td class="py-3 fw-semibold">
+                                            Clean Code
+                                        </td>
+                                        <td class="py-3">Alex Smith</td>
+                                        <td class="py-3">
+                                            <span class="badge rounded-pill
+                                                         bg-warning text-dark">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="py-3">
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-success"
+                                                >
+                                                    Accept
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-outline-danger"
+                                                >
+                                                    Reject
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="small text-secondary mb-0 mt-3">
+                            Your exchange activity will appear here.
+                        </p>
+
                     </div>
-                </div>
+                </section>
+
+                <!-- Helpful Note -->
+                <section class="community-banner mt-4">
+                    <div class="p-4">
+                        <h2 class="h5 fw-bold">Every book deserves another reader.</h2>
+                        <p class="mb-3">
+                            List a book you have finished and help someone
+                            discover their next favourite.
+                        </p>
+                        <a href="index.html"
+                           class="community-button text-decoration-none">
+                            Explore Books
+                        </a>
+                    </div>
+                </section>
+
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="bookloop-footer mt-5">
+        <div class="container footer-inner py-4">
+            <a href="index.html"
+               class="footer-brand text-decoration-none">
+                BookLoop
+            </a>
+            <p class="small mb-0">
+                Read. Share. Repeat.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
+
 </body>
 </html>
+```
