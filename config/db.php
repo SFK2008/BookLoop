@@ -4,7 +4,7 @@ $host = "localhost";
 $port = "5432";
 $dbname = "bookloop_db";
 $user = "postgres";
-$password = "postgres"; // Replace with your PostgreSQL password
+$password = "Fatina@2008"; // Replace with your PostgreSQL password
 
 try {
     // Construct PostgreSQL Connection DSN (Data Source Name)
