@@ -313,15 +313,25 @@
                 );
             }
 
-            const data = await response.json();
+            const result = await response.json();
 
-            if (!Array.isArray(data)) {
+            // Extract array whether the API sends [ ... ] or { status: "success", data: [ ... ] }
+            const booksList = Array.isArray(result) 
+                ? result 
+                : (Array.isArray(result.data) ? result.data : null);
+
+            if (!booksList) {
                 throw new Error(
-                    data.error || "The API did not return a list of books."
+                    result.message || result.error || "The API did not return a list of books."
                 );
             }
 
-            allBooks = data;
+            // Map book_id to id so sorting and URLs work seamlessly
+            allBooks = booksList.map(book => ({
+                ...book,
+                id: book.book_id || book.id
+            }));
+
             renderBooks();
 
         } catch (error) {
