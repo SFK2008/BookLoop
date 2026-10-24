@@ -1024,3 +1024,80 @@
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* Navigation bar: improve readability and spacing */
+.bookloop-nav {
+    background-color: #173f32;
+    color: #fffaf2;
+    padding: 16px 0;
+    width: 100%;
+}
+
+.bookloop-nav a {
+    color: #fffaf2;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.bookloop-nav a:hover,
+.bookloop-nav a:focus {
+    color: #f18a6b;
+}
+
+.bookloop-nav .brand-symbol {
+    background-color: #ed8065;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.bookloop-nav .brand-name,
+.bookloop-nav .brand,
+.bookloop-nav .navbar-brand {
+    color: #fffaf2;
+    font-weight: 700;
+}
+
+.bookloop-nav .active,
+.bookloop-nav a[aria-current="page"] {
+    color: #f18a6b;
+}
+
+/* Keep navigation items aligned and spaced */
+.bookloop-nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+.bookloop-nav .nav-links,
+.bookloop-nav .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+/* Responsive navigation for small screens */
+@media (max-width: 576px) {
+    .bookloop-nav {
+        padding: 12px 0;
+    }
+
+    .bookloop-nav .container {
+        gap: 12px;
+    }
+
+    .bookloop-nav .nav-links,
+    .bookloop-nav .navbar-nav {
+        gap: 10px 16px;
+    }
+
+    .bookloop-nav a {
+        font-size: 14px;
+    }
+}
+
