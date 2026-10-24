@@ -32,11 +32,13 @@ if ($method === 'GET') {
         $params[':genre'] = $genre;
     }
 
-    // Apply Condition Filter[cite: 1]
+    
+    // Apply Condition Filter
     if ($condition !== 'all' && !empty($condition)) {
-        $sql .= " AND b.condition = :condition";
+        $sql .= ' AND b."condition" = :condition';
         $params[':condition'] = $condition;
     }
+
 
     $sql .= " ORDER BY b.book_id DESC";
 
@@ -69,7 +71,10 @@ if ($method === 'POST') {
         exit;
     }
 
-    $stmt = $pdo->prepare("INSERT INTO books (user_id, title, author, genre, condition, status) VALUES (:user_id, :title, :author, :genre, :condition, 'Available')");
+   $stmt = $pdo->prepare(
+    'INSERT INTO books (user_id, title, author, genre, "condition", status)
+     VALUES (:user_id, :title, :author, :genre, :condition, \'Available\')'
+);
     $stmt->execute([
         ':user_id' => $_SESSION['user_id'],
         ':title' => $title,
