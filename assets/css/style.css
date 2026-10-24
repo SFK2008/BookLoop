@@ -1100,4 +1100,24 @@
         font-size: 14px;
     }
 }
+/* BookLoop navbar readability fix */
+.bookloop-nav {
+    background-color: #173f32 !important;
+}
 
+.bookloop-nav,
+.bookloop-nav a,
+.bookloop-nav .navbar-brand,
+.bookloop-nav .nav-link {
+    color: #fffaf2 !important;
+}
+
+.bookloop-nav a:hover,
+.bookloop-nav .nav-link:hover {
+    color: #f18a6b !important;
+}
+
+.bookloop-nav .brand-symbol {
+    color: #ffffff !important;
+    background-color: #ed8065;
+}
